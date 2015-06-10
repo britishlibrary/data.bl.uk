@@ -3,6 +3,10 @@ layout: bootstrap
 title: Format Profile
 subtitle: JISC UK Web Domain Dataset (1996-2010)
 doi: 10.5259/ukwa.ds.2/fmt/1
+id: fmt
+source: ukwa.ds.2
+type: dataset
+license: CC0
 ---
 
 This dataset is a format profile, summarising the data formats (MIME types) contained within all of the HTTP 200 OK responses in the (1996-2010) tranch of the [JISC UK Web Domain Dataset]({{ site.baseurl }}/ukwa.ds.2/) dataset.

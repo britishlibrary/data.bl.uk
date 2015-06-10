@@ -1,6 +1,7 @@
 ---
 layout: bootstrap
 title: Wayback
+permalink: /ukwa/apis/wayback/
 ---
 
 TBA

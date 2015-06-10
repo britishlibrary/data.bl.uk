@@ -4,34 +4,12 @@
     <meta charset="utf-8">
     <title>{{ page.title }} {{ page.subtitle }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="UK Web Archive Open Data">
-    <meta name="author" content="www.webarchive.org.uk">
+    <meta name="description" content="data.bl.uk - British Library Datasets">
+    <meta name="author" content="http://www.bl.uk">
 
     <!-- Le styles -->
-    <link href="{{ site.baseurl }}/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 0px; /* was 60px for navbar-fixed-top */
-        padding-bottom: 40px;
-      }
-.navbar-inner {
-  background: #009999;
-  background-image: -moz-linear-gradient(top, #009999, #008282);
-  background-image: -ms-linear-gradient(top, #009999, #008282);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#009999), to(#008282));
-  background-image: -webkit-linear-gradient(top, #009999, #008282);
-  background-image: -o-linear-gradient(top, #009999, #008282);
-  background-image: linear-gradient(top, #009999, #008282);
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#009999', endColorstr='#008282', GradientType=0);
-}
-.navbar .brand, .navbar .nav > li > a {
- color: white;
-}
-.navbar .nav .active > a, .navbar .nav .active > a:hover {
-background: #008282;
-}
-    </style>
-    <link href="{{ site.baseurl }}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="{{ site.baseurl }}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ site.baseurl }}/assets/stylesheets/stylesheet.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -39,45 +17,47 @@ background: #008282;
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="{{ site.baseurl }}/images/ukwa-icon-16.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.baseurl }}/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.baseurl }}/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.baseurl }}/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="{{ site.baseurl }}/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="{{ site.baseurl }}/assets/images/ukwa-icon-16.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.baseurl }}/assets/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.baseurl }}/assets/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site.baseurl }}/assets/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{ site.baseurl }}/assets/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
 
   <body>
 
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/images/ukwa-icon-nobg-16.png"/>UKWA Open Data</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="{{ site.baseurl }}/">Home</a></li>
-              <li><a href="https://github.com/ukwa/opendata">GitHub</a></li>
-              <li><a href="http://www.webarchive.org.uk/">UKWA</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
+          </button>
+          <a class="navbar-brand" href="{{ site.baseurl }}/">data.bl.uk</a>
         </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ site.baseurl }}">Home</a></li>
+              <li><a href="{{ site.baseurl }}/datasets/">Datasets</a></li>
+              <li><a href="{{ site.baseurl }}/sources/">Sources</a></li>
+              <li><a href="{{ site.baseurl }}/contact/">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
-    </div>
+    </nav>
 
     <div class="container">
 
       <!-- Example row of columns -->
       <div class="row">
-        <div class="span3">
+        <div class="col-xs-12 col-md-4">
 
 <p>
 {% capture url_parts %} {{ page.url | remove: "/index.html" | replace:'/'," " }}{% endcapture %}
 {% capture num_parts %}{{ url_parts | number_of_words }}{% endcapture %}
-{% assign previous="/opendata" %}
+{% assign previous="" %}
 <ul class="breadcrumb">
  {% if num_parts == "0" or num_parts == "-1" %}
   <li><a href="{{ site.baseurl }}/">home</a> &nbsp; </li>
@@ -85,10 +65,10 @@ background: #008282;
   <li><a href="{{ site.baseurl }}/">home</a></li>
 
   {% for unused in site.pages limit:num_parts %}
-   {% capture first_word %}{{ url_parts | truncatewords:1 | remove:"..."}}{% endcapture %}
+   {% capture first_word %}{{ url_parts | truncatewords:1 | remove:"..." }}{% endcapture %}
    {% capture previous %}{{ previous }}/{{ first_word }}{% endcapture %}
 
-   <li><span class="divider">&#187;</span> <a href="{{previous}}">{{ first_word }}</a></li>
+   <li><a href="{{previous}}">{{ first_word }}</a></li>
 
    {% capture url_parts %}{{ url_parts | remove_first:first_word }}{% endcapture %}
   {% endfor %}
@@ -97,69 +77,54 @@ background: #008282;
 </p>
 
 <p>
-<ul class="nav nav-list well">
-  <li class="nav-header">
-    JISC UK Web Domain Dataset (1996-2013)
-  </li>
-  <li><a href="{{ site.baseurl }}/ukwa.ds.2">Introduction</a></li>
-  <li><a href="{{ site.baseurl }}/ukwa.ds.2/fmt">Format Profile</a></li>
-  <li><a href="{{ site.baseurl }}/ukwa.ds.2/geo">Geoindex</a></li>
-<!--
-  <li><a href="{{ site.baseurl }}/ukwa.ds.2/linkage">Top-level Links</a></li>
--->
-  <li><a href="{{ site.baseurl }}/ukwa.ds.2/host-linkage">Host-level Links</a></li>
-  <li><a href="{{ site.baseurl }}/ukwa.ds.2/cdx">Crawled URL Index</a></li>
-  
-  <li class="nav-header">
-    UK Selective Web Archive
-  </li>
-  <li><a href="{{ site.baseurl }}/ukwa.ds.1">Introduction</a></li>
-  <li><a href="{{ site.baseurl }}/ukwa.ds.1/classification">Website Classification Dataset</a></li>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Datasets</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+      <li><a href="{{ site.baseurl }}/ukwa">The UK Web Archive</a>
+        <ul>
+          <li><a href="{{ site.baseurl }}/ukwa.ds.2">JISC UK Web Domain Dataset (1996-2013)</a></li>
+          <li><a href="{{ site.baseurl }}/ukwa.ds.1">UK Selective Web Archive</a></li>
+        </ul>
+      </li>
+      <li>???
+        <ul>
+          <li><a href="{{ site.baseurl }}/???/???">OCR</a></li>
+          <li><a href="{{ site.baseurl }}/???/???">???</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
 
-<!--
-  <li class="nav-header">
-    APIs
-  </li>
-  <li><a href="{{ site.baseurl }}/wayback">Wayback</a></li>
-  <li><a href="{{ site.baseurl }}/memento">Memento</a></li>
--->
 
-  <li class="nav-header">
-    Projects
-  </li>
-  <li><a href="http://buddah.projects.history.ac.uk/">Big UK Domain Data for the Arts and Humanities</a></li>
-  <li><a href="http://domaindarkarchive.blogspot.co.uk/">Analytical Access to the Domain Dark Archive</a></li>
-  <li><a href="http://www.oii.ox.ac.uk/research/projects/?id=88">Big Data: Demonstrating the Value of the UK Web Domain Dataset for Social Science Research</a></li>
-  <li><a href="http://www.scape-project.eu">SCAPE: Scaleable Preservation Environments</a></li>
 
-  <li class="nav-header">
-    Related work
-  </li>
-  <li><a href="https://github.com/commoncrawl/commoncrawl">Common Crawl</a></li>
-  <li><a href="http://httparchive.org/">httparchive.org</a></li>
-
-</ul>
 </p>
 
         <p>
-          <a class="btn" href="mailto:web-archivist@bl.uk">Any Questions?</a>
+          <a class="btn btn-primary" href="{{ site.baseurl }}/contact/">Any Questions?</a>
         </p>
 
        </div>
 
-        <div class="span9">
+        <div class="col-xs-12 col-md-8" id="main_content">
+
           <div class="page-header">
             <h1>{{ page.title }} <small>{{ page.subtitle }}</small></h1>
           </div>
+
            {{ content }}
+
        </div>
       </div>
 
       <hr>
 
       <footer>
-        <a class="btn" href="https://github.com/ukwa/opendata" style="float:right;">View on GitHub <img src="{{ site.baseurl }}/images/blacktocat-sml.png"/></a>
-        <p class="copyright">UK Web Archive Open Data maintained by <a href="http://www.webarchive.org.uk/">webarchive.org.uk</a></p>
+        <a class="btn btn-default pull-right" href="https://github.com/britishlibrary/data.bl.uk">View on GitHub <img src="{{ site.baseurl }}/assets/images/blacktocat-sml.png" width="20"/></a>
+        <p class="copyright">British Library Datasets maintained by <a href="http://www.bl.uk/">bl.uk</a></p>
       </footer>
 
     </div> <!-- /container -->
@@ -167,8 +132,7 @@ background: #008282;
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ site.baseurl }}/bootstrap/js/jquery.js"></script>
-    <script src="{{ site.baseurl }}/bootstrap/js/bootstrap.js"></script>
+    <script src="{{ site.baseurl }}/assets/bootstrap/js/bootstrap.min.js"></script>
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
